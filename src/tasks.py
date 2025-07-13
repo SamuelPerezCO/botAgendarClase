@@ -60,12 +60,7 @@ def classList():
     initButton.click()
     time.sleep(2)
 
-    # # #Click on select
-    # selectStatusClass = driver.find_element(By.XPATH, '//*[@id="vTPEAPROBO"]')
-    # selectStatusClass.click()
-    # time.sleep(1)
-
-    # #pending to be scheduled
-    # scheduledClassList = driver.find_element(By.XPATH, '//*[@id="TABLE3"]/tbody/tr/td[3]')
-    # scheduledClassList.click()
-    # time.sleep(5)
+    # #Click on select
+    selectStatusClass = driver.find_element(By.XPATH, '//*[@id="TABLE3"]/tbody/tr')
+    print("ENCONTRE LA BARRA")
+    time.sleep(3)
