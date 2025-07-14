@@ -69,8 +69,7 @@ def classList():
     pyautogui.click(centro)
     time.sleep(2)
 
-def scheduleClass():
-
+def openMenuClasses():
     #CLick on "PENDIENTES POR PROGRAMAR"
     imagen = 'C:\\Codigos\\botAgendarClase\\imgs\\img-pendientesporprogramar.png'
     ubicacion = pyautogui.locateOnScreen(imagen , confidence=0.8)
@@ -78,4 +77,6 @@ def scheduleClass():
     pyautogui.click(centro)
     time.sleep(2)
 
-    
+
+
+
