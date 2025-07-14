@@ -1,9 +1,11 @@
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
+from selenium import webdriver
 import pandas as pd
+import pyautogui
 import time
 
 # Browser options
@@ -60,7 +62,20 @@ def classList():
     initButton.click()
     time.sleep(2)
 
-    # #Click on select
-    selectStatusClass = driver.find_element(By.XPATH, '//*[@id="TABLE3"]/tbody/tr')
-    print("ENCONTRE LA BARRA")
-    time.sleep(3)
+    #Click on select
+    imagen = 'C:\\Codigos\\botAgendarClase\\imgs\\img-todoslosestados.png'
+    ubicacion = pyautogui.locateOnScreen(imagen, confidence=0.8)
+    centro = pyautogui.center(ubicacion)
+    pyautogui.click(centro)
+    time.sleep(2)
+
+def scheduleClass():
+
+    #CLick on "PENDIENTES POR PROGRAMAR"
+    imagen = 'C:\\Codigos\\botAgendarClase\\imgs\\img-pendientesporprogramar.png'
+    ubicacion = pyautogui.locateOnScreen(imagen , confidence=0.8)
+    centro = pyautogui.center(ubicacion)
+    pyautogui.click(centro)
+    time.sleep(2)
+
+    
