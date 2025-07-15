@@ -25,6 +25,13 @@ time.sleep(1)
 driver.get('https://schoolpack.smart.edu.co/idiomas/alumnos.aspx')
 time.sleep(3)
 
+def entryIframe():
+    iframe = driver.find_element(By.TAG_NAME, "iframe")
+    driver.switch_to.frame(iframe)
+
+def outIframe():
+    driver.switch_to.default_content()
+
 def login(USER , PASSWORD):
     #Send user and password info
     userField = driver.find_element(By.XPATH, '//*[@id="vUSUCOD"]')
@@ -63,21 +70,10 @@ def classList():
     time.sleep(2)
 
     #Click on select
-    imagen = 'C:\\Codigos\\botAgendarClase\\imgs\\img-todoslosestados.png'
-    ubicacion = pyautogui.locateOnScreen(imagen, confidence=0.8)
-    centro = pyautogui.center(ubicacion)
-    pyautogui.click(centro)
-    time.sleep(2)
+    
 
 def openMenuClasses():
-    #CLick on "PENDIENTES POR PROGRAMAR"
-    imagen = 'C:\\Codigos\\botAgendarClase\\imgs\\img-pendientesporprogramar.png'
-    ubicacion = pyautogui.locateOnScreen(imagen , confidence=0.8)
-    centro = pyautogui.center(ubicacion)
-    pyautogui.click(centro)
-    time.sleep(2)
-
+    pass
 
 def schedulesClass():
-    #Queda por hacer esta funcion
     pass

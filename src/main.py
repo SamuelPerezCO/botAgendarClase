@@ -4,5 +4,3 @@ import tasks
 tasks.login(USER=USER , PASSWORD=PASSWORD)
 tasks.closePopUpAndClickOnSchedule()
 tasks.classList()
-tasks.openMenuClasses()
-tasks.schedulesClass()
