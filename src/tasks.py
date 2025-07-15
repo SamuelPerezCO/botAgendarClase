@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 import pandas as pd
-import pyautogui
+# import pyautogui
 import time
 
 # Browser options
@@ -69,8 +69,12 @@ def classList():
     initButton.click()
     time.sleep(2)
 
+    entryIframe()
+    print("Entre en el iframe")
+    time.sleep(3)
+
     #Click on select
-    
+
 
 def openMenuClasses():
     pass
