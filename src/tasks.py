@@ -1,4 +1,4 @@
-from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
@@ -78,5 +78,6 @@ def openMenuClasses():
     time.sleep(2)
 
 
-
-
+def schedulesClass():
+    #Queda por hacer esta funcion
+    pass
