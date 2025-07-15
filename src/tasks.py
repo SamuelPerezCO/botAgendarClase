@@ -70,14 +70,25 @@ def classList():
     time.sleep(2)
 
     entryIframe()
-    print("Entre en el iframe")
-    time.sleep(3)
 
     #Click on select
+    statusClasses = driver.find_element(By.XPATH , '//*[@id="vTPEAPROBO"]')
+    select = Select(statusClasses)
+    select.select_by_index(2)
+    time.sleep(3)
 
+def scheduleClass():
+    #CLick on the class
+    classNumber = driver.find_element(By.XPATH , "//td[contains(., 'CLASE 11')]//span[contains(text(), 'CLASE 11')]")
+    classNumber.click()
+    print("Logre darle click a la clase 11")
+    time.sleep(3)
 
-def openMenuClasses():
-    pass
+    #Click on asing
+    asignButton = driver.find_element(By.XPATH, '//*[@id="BUTTON1"]')
+    asignButton.click()
+    print("Le click en asignar")
+    time.sleep(3)
 
-def schedulesClass():
+def scheduleBranchDayTime():
     pass
