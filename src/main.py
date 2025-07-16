@@ -1,6 +1,9 @@
 from config import USER , PASSWORD
+from logger.utils.logger_config import logger
 import tasks
 import driver_setup
+
+logger.info("Empezo el logger")
 
 driver = driver_setup.setup()
 
