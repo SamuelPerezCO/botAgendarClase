@@ -4,8 +4,8 @@ import driver_setup
 
 driver = driver_setup.setup()
 
-tasks.login(USER=USER , PASSWORD=PASSWORD ,driver=driver)
-tasks.closePopUpAndClickOnSchedule(driver=driver)
-tasks.classList(driver=driver)
+tasks.login(USER ,PASSWORD ,driver)
+tasks.closePopUpAndClickOnSchedule(driver)
+tasks.classList(driver)
 tasks.scheduleClass(driver)
-# tasks.scheduleBranchDayTime()
+# tasks.scheduleBranchDayTime(driver)

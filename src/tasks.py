@@ -59,6 +59,7 @@ def classList(driver):
     select.select_by_index(2)
     time.sleep(3)
 
+
 def scheduleClass(driver):
     #CLick on the class
     classNumber = driver.find_element(By.XPATH , "//td[contains(., 'CLASE 11')]//span[contains(text(), 'CLASE 11')]")
@@ -69,8 +70,10 @@ def scheduleClass(driver):
     #Click on asing
     asignButton = driver.find_element(By.XPATH, '//*[@id="BUTTON1"]')
     asignButton.click()
-    print("Le click en asignar")
+    print("Le di click en asignar")
     time.sleep(3)
 
-def scheduleBranchDayTime():
+    outIframe(driver)
+
+def scheduleBranchDayTime(driver):
     pass
