@@ -5,34 +5,16 @@ from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 import pandas as pd
-# import pyautogui
 import time
 
-# Browser options
-options = webdriver.ChromeOptions()
-options.add_argument("--start-maximized")
-options.add_argument("--disable-extensions")
-
-driver_path = 'C:\\APPS\\ChromeDriver v138\\chromedriver-win64\\chromedriver.exe'
-service = Service(driver_path)
-driver = webdriver.Chrome(service=service, options=options)
-
-driver.set_window_position(0, 0)   
-driver.maximize_window()
-time.sleep(1)
-
-# Initialization of the browser
-driver.get('https://schoolpack.smart.edu.co/idiomas/alumnos.aspx')
-time.sleep(3)
-
-def entryIframe():
+def entryIframe(driver):
     iframe = driver.find_element(By.TAG_NAME, "iframe")
     driver.switch_to.frame(iframe)
 
-def outIframe():
+def outIframe(driver):
     driver.switch_to.default_content()
 
-def login(USER , PASSWORD):
+def login(USER , PASSWORD , driver):
     #Send user and password info
     userField = driver.find_element(By.XPATH, '//*[@id="vUSUCOD"]')
     userField.send_keys(USER)
@@ -47,7 +29,7 @@ def login(USER , PASSWORD):
     confirmButton.click()
     time.sleep(2)
 
-def closePopUpAndClickOnSchedule():
+def closePopUpAndClickOnSchedule(driver):
     #Close PopUp
     popUp = driver.find_element(By.XPATH, '//*[@id="gxp0_cls"]')
     popUp.click()
@@ -58,7 +40,7 @@ def closePopUpAndClickOnSchedule():
     scheduleButton.click()
     time.sleep(2)
 
-def classList():
+def classList(driver):
     #Click on curriculum
     curriculum = driver.find_element(By.XPATH, '//*[@id="span_W0030TMPDESART_0001"]')
     curriculum.click()
@@ -69,7 +51,7 @@ def classList():
     initButton.click()
     time.sleep(2)
 
-    entryIframe()
+    entryIframe(driver)
 
     #Click on select
     statusClasses = driver.find_element(By.XPATH , '//*[@id="vTPEAPROBO"]')
@@ -77,7 +59,7 @@ def classList():
     select.select_by_index(2)
     time.sleep(3)
 
-def scheduleClass():
+def scheduleClass(driver):
     #CLick on the class
     classNumber = driver.find_element(By.XPATH , "//td[contains(., 'CLASE 11')]//span[contains(text(), 'CLASE 11')]")
     classNumber.click()
