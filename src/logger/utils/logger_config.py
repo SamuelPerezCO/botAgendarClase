@@ -2,7 +2,7 @@ import logging
 from datetime import datetime
 
 fecha_actual = datetime.now().strftime("%Y-%m-%d")
-ruta_log = f"C:\\Codigos\\botAgendarClase\\logger\\logs\\registro_{fecha_actual}.log"
+ruta_log = f"C:\\Codigos\\botAgendarClase\\src\\logger\\logs\\registro_{fecha_actual}.log"
 
 formatter = logging.Formatter(
     "%(asctime)s [%(levelname)s] %(filename)s: %(message)s",
