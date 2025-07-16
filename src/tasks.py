@@ -91,13 +91,11 @@ def scheduleClass(driver):
         #CLick on the class
         classNumber = driver.find_element(By.XPATH , "//td[contains(., 'CLASE 11')]//span[contains(text(), 'CLASE 11')]")
         classNumber.click()
-        print("Logre darle click a la clase 11")
         time.sleep(3)
 
         #Click on asing
         asignButton = driver.find_element(By.XPATH, '//*[@id="BUTTON1"]')
         asignButton.click()
-        print("Le di click en asignar")
         time.sleep(3)
 
         outIframe(driver)
