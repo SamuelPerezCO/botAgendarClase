@@ -110,15 +110,15 @@ def scheduleBranchDayTime(driver):
         # Buscar de nuevo los iframes después del flujo previo
         WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.TAG_NAME, "iframe")))
         iframes = driver.find_elements(By.TAG_NAME, "iframe")
-        print(f"[INFO] Total iframes encontrados: {len(iframes)}")
+        logger.info(f"Total iframes encontrados: {len(iframes)}")
 
         iframe_correcto = None
 
         # Detectar iframe que contiene el elemento buscado
         for idx, iframe in enumerate(iframes):
             driver.switch_to.frame(iframe)
-            if driver.find_elements(By.ID, "vREGCONREG"):  # cambia el selector si es otro
-                print(f"[INFO] Elemento encontrado en iframe {idx}")
+            if driver.find_elements(By.ID, "vREGCONREG"): 
+                logger.info(f"Elemento encontrado en iframe {idx}")
                 iframe_correcto = idx
                 driver.switch_to.default_content()
                 break
@@ -129,15 +129,30 @@ def scheduleBranchDayTime(driver):
             WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.TAG_NAME, "iframe")))
             fresh_iframes = driver.find_elements(By.TAG_NAME, "iframe")
             driver.switch_to.frame(fresh_iframes[iframe_correcto])
-            print(f"[INFO] Ahora estás dentro del iframe correcto {iframe_correcto}")
+            logger.info(f"Ahora estás dentro del iframe correcto {iframe_correcto}")
 
             # Validación para evitar error
             WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "vREGCONREG")))
-            print("[INFO] Elemento listo para interactuar")
-
-
+            logger.info("Elemento listo para interactuar")
 
         else:
-            print("[ERROR] No se encontró el iframe correcto.")
+            logger.error("No se encontró el iframe correcto.")
+
+        #Seleccionar la sede
+        branchList = driver.find_element(By.XPATH , '//*[@id="vREGCONREG"]')
+        select = Select(branchList)
+        select.select_by_visible_text("ENVIGADO")
+        logger.info("Sede Seleccionada")
+        time.sleep(3)
+
+        #Seleccionar el Dia
+        dayList = driver.find_element(By.XPATH, '//*[@id="vDIA"]')
+        select = Select(dayList)
+        # select.select_by_visible_text("Viernes")
+        select.select_by_visible_text("Viernes 18/07/25")
+        logger.info("Dia Seleccionado")
+        time.sleep(3)
+
     except Exception as e:
         print("El error es " , e)
+        time.sleep(3)
