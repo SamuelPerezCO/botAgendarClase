@@ -3,6 +3,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
 from logger.utils.logger_config import logger
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 import pandas as pd
@@ -20,7 +21,7 @@ def entryIframe(driver):
 def outIframe(driver):
     try:
         driver.switch_to.default_content()
-        logger.info("Salir del IFrame")
+        logger.info("Salir IFrame")
 
     except Exception as e:
         logger.error("No logre salir del Iframe -> Error {e}")
@@ -105,4 +106,38 @@ def scheduleClass(driver):
         logger.error("Error en darle Click en la clase")
 
 def scheduleBranchDayTime(driver):
-    pass
+    try:
+        # Buscar de nuevo los iframes después del flujo previo
+        WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.TAG_NAME, "iframe")))
+        iframes = driver.find_elements(By.TAG_NAME, "iframe")
+        print(f"[INFO] Total iframes encontrados: {len(iframes)}")
+
+        iframe_correcto = None
+
+        # Detectar iframe que contiene el elemento buscado
+        for idx, iframe in enumerate(iframes):
+            driver.switch_to.frame(iframe)
+            if driver.find_elements(By.ID, "vREGCONREG"):  # cambia el selector si es otro
+                print(f"[INFO] Elemento encontrado en iframe {idx}")
+                iframe_correcto = idx
+                driver.switch_to.default_content()
+                break
+            driver.switch_to.default_content()
+
+        if iframe_correcto is not None:
+            # Volvemos a buscar los iframes para evitar referencia inválida
+            WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.TAG_NAME, "iframe")))
+            fresh_iframes = driver.find_elements(By.TAG_NAME, "iframe")
+            driver.switch_to.frame(fresh_iframes[iframe_correcto])
+            print(f"[INFO] Ahora estás dentro del iframe correcto {iframe_correcto}")
+
+            # Validación para evitar error
+            WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "vREGCONREG")))
+            print("[INFO] Elemento listo para interactuar")
+
+
+
+        else:
+            print("[ERROR] No se encontró el iframe correcto.")
+    except Exception as e:
+        print("El error es " , e)

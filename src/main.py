@@ -11,6 +11,6 @@ tasks.login(USER ,PASSWORD ,driver)
 tasks.closePopUpAndClickOnSchedule(driver)
 tasks.classList(driver)
 tasks.scheduleClass(driver)
-# tasks.scheduleBranchDayTime(driver)
+tasks.scheduleBranchDayTime(driver)
 
 logger.info("-" * 25 + "FIN" + "-" * 25)
