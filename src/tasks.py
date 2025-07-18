@@ -153,6 +153,15 @@ def scheduleBranchDayTime(driver):
         logger.info("Dia Seleccionado")
         time.sleep(3)
 
+        classHour = driver.find_element(By.XPATH , '//*[@id="Grid1ContainerRow_0002"]')
+        classHour.click()
+        logger.info("Le di clase a la hora")
+        time.sleep(3)
+
+        confirmButton = driver.find_element(By.XPATH, '//*[@id="BUTTON1"]')
+        confirmButton.click()
+        logger.info("Click en confirm")
+        time.sleep(3)
     except Exception as e:
         print("El error es " , e)
         time.sleep(3)
