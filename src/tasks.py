@@ -58,7 +58,7 @@ def closePopUpAndClickOnSchedule(driver):
         scheduleButton.click()
         time.sleep(2)
 
-        logger.info("Cerre el PopUp")
+        logger.info("Cerre el PopUp -> Click on Schedule")
     except Exception as e:
         logger.error("Error cerrando el PopUp Error -> {e}")
 
@@ -148,12 +148,12 @@ def scheduleBranchDayTime(driver):
         #Seleccionar el Dia
         dayList = driver.find_element(By.XPATH, '//*[@id="vDIA"]')
         select = Select(dayList)
-        # select.select_by_visible_text("Viernes")
-        select.select_by_visible_text("Viernes 18/07/25")
+        select.select_by_visible_text("Sábado 19/07/25")
         logger.info("Dia Seleccionado")
         time.sleep(3)
 
-        classHour = driver.find_element(By.XPATH , '//*[@id="Grid1ContainerRow_0002"]')
+        #Cambia segun la clase que necesito
+        classHour = driver.find_element(By.XPATH , '//*[@id="Grid1ContainerRow_0006"]')
         classHour.click()
         logger.info("Le di clase a la hora")
         time.sleep(3)
@@ -165,3 +165,34 @@ def scheduleBranchDayTime(driver):
     except Exception as e:
         print("El error es " , e)
         time.sleep(3)
+
+def outOfWebPage(driver):
+
+    driver.switch_to.default_content()
+    print("✅ Saliste del iframe")
+
+    # Encuentra todos los iframes
+    iframes = driver.find_elements(By.TAG_NAME, 'iframe')
+    print(f'Iframes encontrados: {len(iframes)}')
+
+    # Si hay iframes, entras al primero (o al correcto según el índice)
+    if len(iframes) > 0:
+        driver.switch_to.frame(iframes[0])
+        print("✅ Entro al iframe")
+        for elem in driver.find_elements(By.CSS_SELECTOR, "*[id]"):
+            print(elem.get_attribute("id"))
+
+        elementos = driver.find_elements(By.ID, "gxp0_cls")
+        print(f"Elementos encontrados: {len(elementos)}")
+
+
+        # Esperar hasta que esté presente el elemento y darle click
+        try:
+            wait = WebDriverWait(driver, 10)
+            boton = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'PopupHeaderButton')))
+            boton.click()
+            print("✅ Botón cerrado")
+        except Exception as e:
+            print(f"❌ No se encontró o no fue clickeable el botón: {e}")
+    else:
+        print("❌ No hay iframes encontrados")

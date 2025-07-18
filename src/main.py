@@ -12,5 +12,6 @@ tasks.closePopUpAndClickOnSchedule(driver)
 tasks.classList(driver)
 tasks.scheduleClass(driver)
 tasks.scheduleBranchDayTime(driver)
+tasks.outOfWebPage(driver)
 
 logger.info("-" * 25 + "FIN" + "-" * 25)
