@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 import pandas as pd
+import pyautogui
 import time
 
 def entryIframe(driver):
@@ -163,8 +164,47 @@ def scheduleBranchDayTime(driver):
         logger.info("Click en confirm")
         time.sleep(3)
     except Exception as e:
-        print("El error es " , e)
+        logger.error("El error es " , e)
         time.sleep(3)
 
 def outOfWebPage(driver):
     outIframe(driver)
+
+    rutaImagenXbutton = 'C:\\Codigos\\botAgendarClase\\src\\imgs\\xButton.png'
+
+    ubicacionXbutton = pyautogui.locateOnScreen(rutaImagenXbutton , confidence= 0.8)
+
+    if ubicacionXbutton:
+        centro = pyautogui.center(ubicacionXbutton)
+        pyautogui.click(centro)
+        time.sleep(1)
+    else:
+        logger.error("Imagen no encontrada")
+        time.sleep(4)
+
+    rutaImagenSalirButton = 'C:\\Codigos\\botAgendarClase\\src\\imgs\\salirButton.png'
+
+    ubicacionSalirButton = pyautogui.locateOnScreen(rutaImagenSalirButton , confidence=0.8)
+
+    if ubicacionSalirButton:
+        centro2 = pyautogui.center(ubicacionSalirButton)
+        pyautogui.click(centro2)
+        time.sleep(1)
+    else:
+        logger.error("Imagen no encontrada")
+        time.sleep(3)
+
+    # rutaImagenAceptarButton = 'C:\\Codigos\\botAgendarClase\\src\\imgs\\aceptarButton.png'
+
+    # ubicacionAceptarButton = pyautogui.locateOnScreen(rutaImagenAceptarButton , confidence=0.7)
+
+    # if ubicacionAceptarButton:
+    #     centro3 = pyautogui.center(ubicacionAceptarButton)
+    #     pyautogui.click(centro3)
+    #     time.sleep(1)
+    # else:
+    #     logger.error("Imagen no encontrada")
+    #     time.sleep(20)
+
+
+    
