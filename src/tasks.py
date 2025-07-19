@@ -167,32 +167,4 @@ def scheduleBranchDayTime(driver):
         time.sleep(3)
 
 def outOfWebPage(driver):
-
-    driver.switch_to.default_content()
-    print("✅ Saliste del iframe")
-
-    # Encuentra todos los iframes
-    iframes = driver.find_elements(By.TAG_NAME, 'iframe')
-    print(f'Iframes encontrados: {len(iframes)}')
-
-    # Si hay iframes, entras al primero (o al correcto según el índice)
-    if len(iframes) > 0:
-        driver.switch_to.frame(iframes[0])
-        print("✅ Entro al iframe")
-        for elem in driver.find_elements(By.CSS_SELECTOR, "*[id]"):
-            print(elem.get_attribute("id"))
-
-        elementos = driver.find_elements(By.ID, "gxp0_cls")
-        print(f"Elementos encontrados: {len(elementos)}")
-
-
-        # Esperar hasta que esté presente el elemento y darle click
-        try:
-            wait = WebDriverWait(driver, 10)
-            boton = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'PopupHeaderButton')))
-            boton.click()
-            print("✅ Botón cerrado")
-        except Exception as e:
-            print(f"❌ No se encontró o no fue clickeable el botón: {e}")
-    else:
-        print("❌ No hay iframes encontrados")
+    outIframe(driver)
