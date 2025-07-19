@@ -6,6 +6,7 @@ from logger.utils.logger_config import logger
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium import webdriver
+from selenium.webdriver.common.alert import Alert
 import pandas as pd
 import pyautogui
 import time
@@ -154,7 +155,7 @@ def scheduleBranchDayTime(driver):
         time.sleep(3)
 
         #Cambia segun la clase que necesito
-        classHour = driver.find_element(By.XPATH , '//*[@id="Grid1ContainerRow_0006"]')
+        classHour = driver.find_element(By.XPATH , '//*[@id="Grid1ContainerRow_0001"]')
         classHour.click()
         logger.info("Le di clase a la hora")
         time.sleep(3)
@@ -182,29 +183,9 @@ def outOfWebPage(driver):
         logger.error("Imagen no encontrada")
         time.sleep(4)
 
-    rutaImagenSalirButton = 'C:\\Codigos\\botAgendarClase\\src\\imgs\\salirButton.png'
-
-    ubicacionSalirButton = pyautogui.locateOnScreen(rutaImagenSalirButton , confidence=0.8)
-
-    if ubicacionSalirButton:
-        centro2 = pyautogui.center(ubicacionSalirButton)
-        pyautogui.click(centro2)
-        time.sleep(1)
-    else:
-        logger.error("Imagen no encontrada")
-        time.sleep(3)
-
-    # rutaImagenAceptarButton = 'C:\\Codigos\\botAgendarClase\\src\\imgs\\aceptarButton.png'
-
-    # ubicacionAceptarButton = pyautogui.locateOnScreen(rutaImagenAceptarButton , confidence=0.7)
-
-    # if ubicacionAceptarButton:
-    #     centro3 = pyautogui.center(ubicacionAceptarButton)
-    #     pyautogui.click(centro3)
-    #     time.sleep(1)
-    # else:
-    #     logger.error("Imagen no encontrada")
-    #     time.sleep(20)
-
-
     
+    time.sleep(3)
+    
+    driver.find_element(By.ID, "SALIR").click()
+    alert = Alert(driver)
+    alert.accept() 
