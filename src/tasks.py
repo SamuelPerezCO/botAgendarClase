@@ -1,13 +1,9 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.alert import Alert
 from selenium.webdriver.support.ui import Select
 from logger.utils.logger_config import logger
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium import webdriver
-from selenium.webdriver.common.alert import Alert
-import pandas as pd
 import pyautogui
 import time
 
@@ -88,11 +84,11 @@ def classList(driver):
     except Exception as e:
         logger.error("Error en ClassList Error -> {e}")
 
-
-def scheduleClass(driver):
+#Se recibe la clase
+def scheduleClass(driver , clase):
     try:
         #CLick on the class
-        classNumber = driver.find_element(By.XPATH , "//td[contains(., 'CLASE 11')]//span[contains(text(), 'CLASE 11')]")
+        classNumber = driver.find_element(By.XPATH , f"//td[contains(., '{clase}')]//span[contains(text(), '{clase}')]")
         classNumber.click()
         time.sleep(3)
 
@@ -107,6 +103,7 @@ def scheduleClass(driver):
     except Exception as e:
         logger.error("Error en darle Click en la clase")
 
+#Me recibe Branch , Dia , HORA
 def scheduleBranchDayTime(driver):
     try:
         # Buscar de nuevo los iframes después del flujo previo
@@ -143,6 +140,7 @@ def scheduleBranchDayTime(driver):
         #Seleccionar la sede
         branchList = driver.find_element(By.XPATH , '//*[@id="vREGCONREG"]')
         select = Select(branchList)
+        #Aca selecciona la sede
         select.select_by_visible_text("ENVIGADO")
         logger.info("Sede Seleccionada")
         time.sleep(3)
