@@ -10,23 +10,17 @@ driver = driver_setup.setup()
 with open("clases.txt", "r") as archivo:
     clases_leidas = json.load(archivo)
 
-print("Clases leídas desde el archivo:\n")
-
-for numero_clase, detalles in clases_leidas.items():
-    print(f"Numero de clase : {numero_clase}")
-    print(f"Sede: {detalles["sede"]}")
-    print(f"Dia: {detalles["dia"]}")
-    print(f"Hora: {detalles["hora"]}")
-    print("--------------------------")
-
 logger.info("-" * 25 + "INICIO" + "-" * 25)
 
 tasks.login(USER ,PASSWORD ,driver)
 tasks.closePopUpAndClickOnSchedule(driver)
 tasks.classList(driver)
 #Le tengo que enviar la clase
-tasks.scheduleClass(driver)
-tasks.scheduleBranchDayTime(driver)
+
+for numero_clase , detalles in clases_leidas.items():
+    tasks.scheduleClass(driver , numero_clase)
+    tasks.scheduleBranchDayTime(driver, detalles["sede"] , detalles["dia"] , detalles["hora"])
+
 
 tasks.outOfWebPage(driver)
 

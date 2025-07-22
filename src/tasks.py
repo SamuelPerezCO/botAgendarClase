@@ -104,7 +104,7 @@ def scheduleClass(driver , clase):
         logger.error("Error en darle Click en la clase")
 
 #Me recibe Branch , Dia , HORA
-def scheduleBranchDayTime(driver):
+def scheduleBranchDayTime(driver , sede , dia , hora):
     try:
         # Buscar de nuevo los iframes después del flujo previo
         WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.TAG_NAME, "iframe")))
@@ -141,19 +141,19 @@ def scheduleBranchDayTime(driver):
         branchList = driver.find_element(By.XPATH , '//*[@id="vREGCONREG"]')
         select = Select(branchList)
         #Aca selecciona la sede
-        select.select_by_visible_text("ENVIGADO")
+        select.select_by_visible_text(f"{sede}")
         logger.info("Sede Seleccionada")
         time.sleep(3)
 
         #Seleccionar el Dia
         dayList = driver.find_element(By.XPATH, '//*[@id="vDIA"]')
         select = Select(dayList)
-        select.select_by_visible_text("Sábado 19/07/25")
+        select.select_by_visible_text(f"{dia}")
         logger.info("Dia Seleccionado")
         time.sleep(3)
 
         #Cambia segun la clase que necesito
-        classHour = driver.find_element(By.XPATH , '//*[@id="Grid1ContainerRow_0001"]')
+        classHour = driver.find_element(By.XPATH , f"{hora}")
         classHour.click()
         logger.info("Le di clase a la hora")
         time.sleep(3)
