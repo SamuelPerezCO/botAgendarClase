@@ -29,16 +29,16 @@ def login(USER , PASSWORD , driver):
         #Send user and password info
         userField = driver.find_element(By.XPATH, '//*[@id="vUSUCOD"]')
         userField.send_keys(USER)
-        time.sleep(2)
+        time.sleep(1.5)
 
         passwordField = driver.find_element(By.XPATH, '//*[@id="vPASS"]')
         passwordField.send_keys(PASSWORD)
-        time.sleep(2)
+        time.sleep(1.5)
 
         #Click on confirm button
         confirmButton = driver.find_element(By.XPATH, '//*[@id="BUTTON1"]')
         confirmButton.click()
-        time.sleep(2)
+        time.sleep(1.5)
         
         logger.info("Login")
     except Exception as e:
@@ -49,12 +49,12 @@ def closePopUpAndClickOnSchedule(driver):
         #Close PopUp
         popUp = driver.find_element(By.XPATH, '//*[@id="gxp0_cls"]')
         popUp.click()
-        time.sleep(2)
+        time.sleep(1.5)
 
         #Click on Schedule
         scheduleButton = driver.find_element(By.XPATH, '//*[@id="IMAGE18"]')
         scheduleButton.click()
-        time.sleep(2)
+        time.sleep(1.5)
 
         logger.info("Cerre el PopUp -> Click on Schedule")
     except Exception as e:
@@ -65,12 +65,12 @@ def classList(driver):
         #Click on curriculum
         curriculum = driver.find_element(By.XPATH, '//*[@id="span_W0030TMPDESART_0001"]')
         curriculum.click()
-        time.sleep(2)
+        time.sleep(1.5)
 
         #Click on init
         initButton = driver.find_element(By.XPATH, '//*[@id="W0030BUTTON1"]')
         initButton.click()
-        time.sleep(2)
+        time.sleep(1.5)
 
         entryIframe(driver)
 
@@ -78,7 +78,7 @@ def classList(driver):
         statusClasses = driver.find_element(By.XPATH , '//*[@id="vTPEAPROBO"]')
         select = Select(statusClasses)
         select.select_by_index(2)
-        time.sleep(3)
+        time.sleep(1.5)
 
         logger.info("ClassList")
     except Exception as e:
@@ -90,12 +90,12 @@ def scheduleClass(driver , clase):
         #CLick on the class
         classNumber = driver.find_element(By.XPATH , f"//td[contains(., '{clase}')]//span[contains(text(), '{clase}')]")
         classNumber.click()
-        time.sleep(3)
+        time.sleep(1.5)
 
         #Click on asing
         asignButton = driver.find_element(By.XPATH, '//*[@id="BUTTON1"]')
         asignButton.click()
-        time.sleep(3)
+        time.sleep(1.5)
 
         outIframe(driver)
 
@@ -143,28 +143,28 @@ def scheduleBranchDayTime(driver , sede , dia , hora):
         #Aca selecciona la sede
         select.select_by_visible_text(f"{sede}")
         logger.info("Sede Seleccionada")
-        time.sleep(3)
+        time.sleep(1.5)
 
         #Seleccionar el Dia
         dayList = driver.find_element(By.XPATH, '//*[@id="vDIA"]')
         select = Select(dayList)
         select.select_by_visible_text(f"{dia}")
         logger.info("Dia Seleccionado")
-        time.sleep(3)
+        time.sleep(1.5)
 
         #Cambia segun la clase que necesito
         classHour = driver.find_element(By.XPATH , f"{hora}")
         classHour.click()
         logger.info("Le di clase a la hora")
-        time.sleep(3)
+        time.sleep(1.5)
 
         confirmButton = driver.find_element(By.XPATH, '//*[@id="BUTTON1"]')
         confirmButton.click()
         logger.info("Click en confirm")
-        time.sleep(3)
+        time.sleep(1.5)
     except Exception as e:
         logger.error("El error es " , e)
-        time.sleep(3)
+        time.sleep(1.5)
 
 def outOfWebPage(driver):
     outIframe(driver)
@@ -176,7 +176,7 @@ def outOfWebPage(driver):
     if ubicacionXbutton:
         centro = pyautogui.center(ubicacionXbutton)
         pyautogui.click(centro)
-        time.sleep(1)
+        time.sleep(1.5)
     else:
         logger.error("Imagen no encontrada")
         time.sleep(4)

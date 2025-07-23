@@ -28,6 +28,3 @@ for numero_clase , detalles in clases_leidas.items():
 confirmMessage.sendMessage()
 
 logger.info("-" * 25 + "FIN" + "-" * 25)
-
-# if __name__ == "__main__":
-#     main()
