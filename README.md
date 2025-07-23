@@ -22,7 +22,9 @@ cd botAgendarClase
 pip install -r requirements.txt
 
 ## ▶️ Uso
-Desde el Task Scheduler (Windows) selecciona el archivo a ejecutar que es el main.py 
+Desde el Programador de tareas (taskschd.msc) selecciona el archivo a ejecutar que es el main.py 
+El dia anterior ejecutar classes.py eh ingresar la informacion 
+y configurar la tarjeta madre para que el computador se prenda solo
 
 ## ✅ Estado del Proyecto
 En desarrollo , faltan pequeñas cosas
