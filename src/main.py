@@ -4,10 +4,13 @@ import driver_setup
 import tasks
 import json
 
+import confirmMessage
+
 
 # Leer desde el archivo y enviar los datos
 with open("clases.txt", "r") as archivo:
     clases_leidas = json.load(archivo)
+
 
 logger.info("-" * 25 + "INICIO" + "-" * 25)
 
@@ -20,7 +23,9 @@ for numero_clase , detalles in clases_leidas.items():
     tasks.scheduleClass(driver , numero_clase)
     tasks.scheduleBranchDayTime(driver, detalles["sede"] , detalles["dia"] , detalles["hora"])
     tasks.outOfWebPage(driver)
-    logger.info(f"CLASE {numero_clase} asignada")
+    logger.info(f"{numero_clase} asignada")
+
+confirmMessage.sendMessage()
 
 logger.info("-" * 25 + "FIN" + "-" * 25)
 
