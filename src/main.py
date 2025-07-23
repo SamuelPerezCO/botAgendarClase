@@ -23,7 +23,7 @@ for numero_clase , detalles in clases_leidas.items():
     tasks.scheduleClass(driver , numero_clase)
     tasks.scheduleBranchDayTime(driver, detalles["sede"] , detalles["dia"] , detalles["hora"])
     tasks.outOfWebPage(driver)
-    logger.info(f"{numero_clase} asignada")
+    logger.info(f"{numero_clase} ASIGNADA")
 
 confirmMessage.sendMessage()
 

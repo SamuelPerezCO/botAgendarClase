@@ -12,17 +12,17 @@ def entryIframe(driver):
         iframe = driver.find_element(By.TAG_NAME, "iframe")
         driver.switch_to.frame(iframe)
 
-        logger.info("Entrar Iframe")
+        logger.info("ENTRE IFRAME")
     except Exception as e:
-        logger.error("No entre en el Iframe -> Error: {e}")
+        logger.error("NO ENTRE EN EL IFRAME -> Error: {e}")
 
 def outIframe(driver):
     try:
         driver.switch_to.default_content()
-        logger.info("Salir IFrame")
+        logger.info("SALIR IFRAME")
 
     except Exception as e:
-        logger.error("No logre salir del Iframe -> Error {e}")
+        logger.error("NO SALI DEL IFRAME -> Error {e}")
 
 def login(USER , PASSWORD , driver):
     try:
@@ -40,9 +40,9 @@ def login(USER , PASSWORD , driver):
         confirmButton.click()
         time.sleep(1.5)
         
-        logger.info("Login")
+        logger.info("LOGIN")
     except Exception as e:
-        logger.error("Error haciendo el Login Error -> {e}")
+        logger.error("ERROR INTENTANDO EL LOGIN -> {e}")
 
 def closePopUpAndClickOnSchedule(driver):
     try:
@@ -56,9 +56,9 @@ def closePopUpAndClickOnSchedule(driver):
         scheduleButton.click()
         time.sleep(1.5)
 
-        logger.info("Cerre el PopUp -> Click on Schedule")
+        logger.info("CERRE EL POPUP -> CLICK EN AGENDAR")
     except Exception as e:
-        logger.error("Error cerrando el PopUp Error -> {e}")
+        logger.error("ERROR CERRANDO EL POPUP : Error -> {e}")
 
 def classList(driver):
     try:
@@ -80,9 +80,9 @@ def classList(driver):
         select.select_by_index(2)
         time.sleep(1.5)
 
-        logger.info("ClassList")
+        logger.info("LISTA DE CLASES")
     except Exception as e:
-        logger.error("Error en ClassList Error -> {e}")
+        logger.error("ERROR EN LA LISTA DE CLASES: Error -> {e}")
 
 #Se recibe la clase
 def scheduleClass(driver , clase):
@@ -99,9 +99,9 @@ def scheduleClass(driver , clase):
 
         outIframe(driver)
 
-        logger.info("ScheduleClass")
+        logger.info("AGENDAR CLASE")
     except Exception as e:
-        logger.error("Error en darle Click en la clase")
+        logger.error("ERROR DANDOLE CLICK EN LA CLASE")
 
 #Me recibe Branch , Dia , HORA
 def scheduleBranchDayTime(driver , sede , dia , hora):
@@ -142,28 +142,28 @@ def scheduleBranchDayTime(driver , sede , dia , hora):
         select = Select(branchList)
         #Aca selecciona la sede
         select.select_by_visible_text(f"{sede}")
-        logger.info("Sede Seleccionada")
+        logger.info("SEDE SELECCIONADA")
         time.sleep(1.5)
 
         #Seleccionar el Dia
         dayList = driver.find_element(By.XPATH, '//*[@id="vDIA"]')
         select = Select(dayList)
         select.select_by_visible_text(f"{dia}")
-        logger.info("Dia Seleccionado")
+        logger.info("DIA SELECCIONADO")
         time.sleep(1.5)
 
         #Cambia segun la clase que necesito
         classHour = driver.find_element(By.XPATH , f"{hora}")
         classHour.click()
-        logger.info("Le di clase a la hora")
+        logger.info("HORA SELECCIONADA")
         time.sleep(1.5)
 
         confirmButton = driver.find_element(By.XPATH, '//*[@id="BUTTON1"]')
         confirmButton.click()
-        logger.info("Click en confirm")
+        logger.info("CLICK EN CONFIRMAR")
         time.sleep(1.5)
     except Exception as e:
-        logger.error("El error es " , e)
+        logger.error(f"ERROR ES: {e} ")
         time.sleep(1.5)
 
 def outOfWebPage(driver):
@@ -178,7 +178,7 @@ def outOfWebPage(driver):
         pyautogui.click(centro)
         time.sleep(1.5)
     else:
-        logger.error("Imagen no encontrada")
+        logger.error("IMAGEN NO ENCONTRADA")
         time.sleep(4)
 
     
