@@ -17,7 +17,9 @@ El bot esta diseñado para que el computador se prenda automaticamente a las 6:0
 - json
 
 ## ⚙️ Instalación
-Por hacer
+git clone https://github.com/SamuelPerezCO/botAgendarClase
+cd botAgendarClase
+pip install -r requirements.txt
 
 ## ▶️ Uso
 Desde el Task Scheduler (Windows) selecciona el archivo a ejecutar que es el main.py 
