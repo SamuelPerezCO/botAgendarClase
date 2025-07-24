@@ -1,2 +1,4 @@
 import os 
-os.system("shutdown /s /t 5")
+
+def shutdowm():
+    os.system("shutdown /s /t 5")
