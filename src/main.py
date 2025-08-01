@@ -1,3 +1,28 @@
+"""Script principal para automatizar la asignación de clases.
+
+Este script:
+    1. Lee las clases pendientes desde un archivo JSON (`clases.txt`).
+    2. Si no hay clases, apaga el equipo.
+    3. Si hay clases, abre el navegador, inicia sesión y realiza el flujo de:
+        - Cerrar pop-up inicial.
+        - Acceder a la lista de clases.
+        - Seleccionar clase.
+        - Seleccionar sede, día y hora.
+        - Salir de la página.
+    4. Envía un mensaje de confirmación.
+    5. Apaga el equipo.
+
+Modules:
+    logger.utils.logger_config: Configuración y uso de logs.
+    config: Variables de configuración como usuario y contraseña.
+    confirmMessage: Envío de mensaje de confirmación al finalizar.
+    driver_setup: Configuración del WebDriver.
+    tasks: Funciones de automatización con Selenium.
+    json: Lectura de datos desde archivo JSON.
+    power: Apagado del sistema.
+    time: Manejo de pausas y espera.
+"""
+
 from logger.utils.logger_config import logger
 from config import USER , PASSWORD
 import confirmMessage
@@ -7,9 +32,6 @@ import json
 import power
 import time
 
-
-
-# Leer desde el archivo y enviar los datos
 with open("clases.txt", "r") as archivo:
     clases_leidas = json.load(archivo)
 

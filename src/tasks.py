@@ -8,6 +8,15 @@ import pyautogui
 import time
 
 def entryIframe(driver):
+    """Entra en el primer iframe encontrado en la página.
+
+    Args:
+        driver (webdriver): Instancia del WebDriver de Selenium.
+
+    Logs:
+        INFO: Si se entra correctamente al iframe.
+        ERROR: Si ocurre un error durante el cambio de contexto.
+    """
     try:
         iframe = driver.find_element(By.TAG_NAME, "iframe")
         driver.switch_to.frame(iframe)
@@ -17,6 +26,15 @@ def entryIframe(driver):
         logger.error("NO ENTRE EN EL IFRAME -> Error: {e}")
 
 def outIframe(driver):
+    """Vuelve al contenido principal desde un iframe.
+
+    Args:
+        driver (webdriver): Instancia del WebDriver de Selenium.
+
+    Logs:
+        INFO: Si se sale correctamente del iframe.
+        ERROR: Si ocurre un error al intentar salir.
+    """
     try:
         driver.switch_to.default_content()
         logger.info("SALIR IFRAME")
@@ -25,6 +43,17 @@ def outIframe(driver):
         logger.error("NO SALI DEL IFRAME -> Error {e}")
 
 def login(USER , PASSWORD , driver):
+    """Inicia sesión en la aplicación web.
+
+    Args:
+        USER (str): Nombre de usuario.
+        PASSWORD (str): Contraseña del usuario.
+        driver (webdriver): Instancia del WebDriver de Selenium.
+
+    Logs:
+        INFO: Si el inicio de sesión es exitoso.
+        ERROR: Si ocurre un error durante el inicio de sesión.
+    """
     try:
         #Send user and password info
         userField = driver.find_element(By.XPATH, '//*[@id="vUSUCOD"]')
@@ -45,6 +74,15 @@ def login(USER , PASSWORD , driver):
         logger.error("ERROR INTENTANDO EL LOGIN -> {e}")
 
 def closePopUpAndClickOnSchedule(driver):
+    """Cierra el pop-up inicial y hace clic en el botón de agendar.
+
+    Args:
+        driver (webdriver): Instancia del WebDriver de Selenium.
+
+    Logs:
+        INFO: Si se cierra el pop-up y se hace clic en agendar.
+        ERROR: Si ocurre un error cerrando el pop-up o haciendo clic.
+    """
     try:
         #Close PopUp
         popUp = driver.find_element(By.XPATH, '//*[@id="gxp0_cls"]')
@@ -61,6 +99,15 @@ def closePopUpAndClickOnSchedule(driver):
         logger.error("ERROR CERRANDO EL POPUP : Error -> {e}")
 
 def classList(driver):
+    """Accede a la lista de clases disponibles.
+
+    Args:
+        driver (webdriver): Instancia del WebDriver de Selenium.
+
+    Logs:
+        INFO: Si se muestra la lista de clases correctamente.
+        ERROR: Si ocurre un error al cargar la lista de clases.
+    """
     try:
         #Click on curriculum
         curriculum = driver.find_element(By.XPATH, '//*[@id="span_W0030TMPDESART_0001"]')
@@ -84,8 +131,17 @@ def classList(driver):
     except Exception as e:
         logger.error("ERROR EN LA LISTA DE CLASES: Error -> {e}")
 
-#Se recibe la clase
 def scheduleClass(driver , clase):
+    """Selecciona una clase específica y la agenda.
+
+    Args:
+        driver (webdriver): Instancia del WebDriver de Selenium.
+        clase (str): Nombre o número de la clase.
+
+    Logs:
+        INFO: Si la clase se agenda correctamente.
+        ERROR: Si ocurre un error al hacer clic en la clase.
+    """
     try:
         #CLick on the class
         classNumber = driver.find_element(By.XPATH , f"//td[contains(., '{clase}')]//span[contains(text(), '{clase}')]")
@@ -103,8 +159,19 @@ def scheduleClass(driver , clase):
     except Exception as e:
         logger.error("ERROR DANDOLE CLICK EN LA CLASE")
 
-#Me recibe Branch , Dia , HORA
 def scheduleBranchDayTime(driver , sede , dia , hora):
+    """Selecciona sede, día y hora para agendar una clase.
+
+    Args:
+        driver (webdriver): Instancia del WebDriver de Selenium.
+        sede (str): Nombre de la sede.
+        dia (str): Día de la clase.
+        hora (str): XPath del botón correspondiente a la hora.
+
+    Logs:
+        INFO: Si la selección se realiza correctamente.
+        ERROR: Si ocurre un error durante la selección.
+    """
     try:
         # Buscar de nuevo los iframes después del flujo previo
         WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.TAG_NAME, "iframe")))
@@ -167,6 +234,15 @@ def scheduleBranchDayTime(driver , sede , dia , hora):
         time.sleep(1.5)
 
 def outOfWebPage(driver):
+    """Sale de la página web y cierra la ventana emergente final.
+
+    Args:
+        driver (webdriver): Instancia del WebDriver de Selenium.
+
+    Logs:
+        INFO: Si se cierra correctamente la página.
+        ERROR: Si no se encuentra el botón de cierre.
+    """
     outIframe(driver)
 
     rutaImagenXbutton = 'C:\\Codigos\\botAgendarClase\\src\\imgs\\xButton.png'

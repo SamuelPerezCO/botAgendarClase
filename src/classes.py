@@ -1,3 +1,17 @@
+"""Script para registrar y guardar clases en un archivo JSON.
+
+Este script:
+    1. Solicita al usuario el número de clases a registrar.
+    2. Pide los datos de cada clase:
+        - Nombre o número de la clase.
+        - Sede.
+        - Día.
+        - Hora (en formato XPath).
+    3. Guarda toda la información en un archivo `clases.txt` en formato JSON.
+
+Uso:
+    Ejecutar el script y seguir las instrucciones en consola.
+"""
 import json
 
 clases = {}
