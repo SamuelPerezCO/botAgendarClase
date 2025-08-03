@@ -27,7 +27,7 @@ El dia anterior ejecutar classes.py eh ingresar la informacion
 y configurar la tarjeta madre para que el computador se prenda solo
 
 ## ✅ Estado del Proyecto
-En desarrollo , faltan pequeñas cosas
+Finalizado
 
 ## 📌 Autor
 Samuel Pérez Serna
